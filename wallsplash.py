@@ -47,6 +47,7 @@ def getRandomPhotoFromColletion(collectionId, resolution="1920x1080"):
     return filepath
 
 def deleteOldWallpapers(days=1):
+    os.chdir(os.environ['HOME']+'/.local/share/wallpapers/')
     for file in os.listdir(): 
         if int(time.time()) - os.stat(file)[-2] > 60*60*24*days: 
             os.remove(file)
