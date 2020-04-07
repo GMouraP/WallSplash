@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import dbus
 import requests
 import os
