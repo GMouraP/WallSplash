@@ -2,10 +2,12 @@ import dbus
 import requests
 import os
 import time
+import random
+# More info at: https://source.unsplash.com/
 
 base_url = "https://source.unsplash.com/collection/"
 
-def setWallpaperToScreens(filepath, plugin = 'org.kde.image', screen = -1):
+def setWallpaperToScreens(filepath, screen = -1, plugin = 'org.kde.image'):
     jscript = """
     var allDesktops = desktops();
     var screen = %i
@@ -43,3 +45,29 @@ def getRandomPhotoFromColletion(collectionId, resolution="1920x1080"):
     
     return filepath
 
+def deleteOldWallpapers(days=1):
+    for file in os.listdir(): 
+        if int(time.time()) - os.stat(file)[-2] > 60*60*24*days: 
+            os.remove(file)
+        
+if __name__ == "__main__":
+    deleteOldWallpapers(days=1)
+    collections = [
+        8807226, 
+        1976082, 
+        786921,
+        784236, 
+        8925813,
+        488437,
+        535285,
+        142563,
+        1111575,
+        ]
+    
+    for screen in range(0, 2):
+        collection = random.choice(collections)
+        filepath = getRandomPhotoFromColletion(collection)
+        setWallpaperToScreens(filepath, screen)
+        time.sleep(2)
+        
+    
