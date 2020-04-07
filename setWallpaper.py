@@ -5,7 +5,6 @@ import time
 
 base_url = "https://source.unsplash.com/collection/"
 
-
 def setWallpaperToScreens(filepath, plugin = 'org.kde.image', screen = -1):
     jscript = """
     var allDesktops = desktops();
@@ -43,3 +42,4 @@ def getRandomPhotoFromColletion(collectionId, resolution="1920x1080"):
         return "Error!! Couldn't write to filepath!"
     
     return filepath
+
